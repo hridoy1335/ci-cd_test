@@ -1,0 +1,34 @@
+name: cicd_testing
+
+on:
+  workflow_dispatch:
+
+jobs:
+  frist_job:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: test_1
+        run: |
+          echo "hellow, frist_workfollow"
+
+  second_job:
+    runs-on: ubuntu-latest
+    needs:
+      - frist_job
+
+    steps:
+      - name: test_2
+        run: |
+          echo "hellow, second_workfollow"
+
+  third_job:
+    runs-on: ubuntu-latest
+    needs:
+      - frist_job
+      - second_job
+
+    steps:
+      - name: test_3
+        run: |
+          echo "hellow, third_workfollow"
