@@ -6,8 +6,6 @@ jobs:
   validate:
     runs-on: ubuntu-latest
     steps:
-      - name: checkout the repo
-        uses: actions/checkout@4
       - name: validate the code
         run: |
           echo "validate the code"
@@ -22,7 +20,6 @@ jobs:
   qa:
     needs:
       - validate
-      - dev
     runs-on: ubuntu-latest
     steps:
       - name: test code
@@ -31,7 +28,7 @@ jobs:
 
   prod:
     needs:
-      - validate
+      - dev
       - qa
     runs-on: ubuntu-latest
     steps:
