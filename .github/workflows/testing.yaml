@@ -1,0 +1,40 @@
+name: 3 environment
+
+on: workflow_dispatch
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout the repo
+        uses: actions/checkout@4
+      - name: validate the code
+        run: |
+          echo "validate the code"
+  dev:
+    needs: validate
+    runs-on: ubuntu-latest
+    steps:
+      - name: test code
+        run: |
+          echo "test1 run good"
+
+  qa:
+    needs:
+      - validate
+      - dev
+    runs-on: ubuntu-latest
+    steps:
+      - name: test code
+        run: |
+          echo "test2 run good"
+
+  prod:
+    needs:
+      - validate
+      - qa
+    runs-on: ubuntu-latest
+    steps:
+      - name: test code
+        run: |
+          echo "test3 run good"
