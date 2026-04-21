@@ -8,30 +8,31 @@ jobs:
     steps:
       - name: validate the code
         run: |
-          echo "validate the code"
+          echo "validate the dev code"
+          echo "validate the qa code"
+          echo "validate the prod code"
   dev:
     needs: validate
     runs-on: ubuntu-latest
     steps:
       - name: test code
         run: |
-          echo "test1 run good"
+          echo "dev are deploy"
 
   qa:
     needs:
-      - validate
+      - dev
     runs-on: ubuntu-latest
     steps:
       - name: test code
         run: |
-          echo "test2 run good"
+          echo "qa are deploy"
 
   prod:
     needs:
-      - dev
       - qa
     runs-on: ubuntu-latest
     steps:
       - name: test code
         run: |
-          echo "test3 run good"
+          echo "prod are deploy"
