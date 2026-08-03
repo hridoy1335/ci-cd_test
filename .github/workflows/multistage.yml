@@ -5,28 +5,40 @@ on:
   pull_request:
     branches: [ "main" ]
 jobs:
-  validate:
+  validate-dev:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Run a one-line script
-        run: echo 'validating the project'
+      - name: validating dev
+        run: echo 'validating the project to dev'
+  validate-qa:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: validating qa
+        run: echo 'validating the project to qa'
+  validate-prod:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: validating prod
+        run: echo 'validating the project to prod'
   dev:
-    needs: validate
+    needs: validate-dev
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - name: Run a dev environment
         run: echo 'deploying dev environment'
   qa:
-    needs: dev
+    needs: validate-qa
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - name: Run a qa envirnment
         run: echo 'deploying qa environment'
   prod:
-    needs: dev
+    needs: validate-prod
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
