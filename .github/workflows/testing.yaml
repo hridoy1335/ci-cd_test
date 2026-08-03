@@ -16,23 +16,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: test code
-        run: |
-          echo "dev are deploy"
+        run: echo "dev are deploy"
 
   qa:
-    needs:
-      - dev
+    needs: dev
     runs-on: ubuntu-latest
     steps:
       - name: test code
-        run: |
-          echo "qa are deploy"
+        run: echo "qa are deploy"
 
   prod:
-    needs:
-      - qa
+    needs: qa
     runs-on: ubuntu-latest
     steps:
       - name: test code
-        run: |
-          echo "prod are deploy"
+        run: echo "prod are deploy"
