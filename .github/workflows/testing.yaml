@@ -1,33 +1,33 @@
-name: 3 environment
+# name: 3 environment
 
-on: workflow_dispatch
+# on: workflow_dispatch
 
-jobs:
-  validate:
-    runs-on: ubuntu-latest
-    steps:
-      - name: validate the code
-        run: |
-          echo "validate the dev code"
-          echo "validate the qa code"
-          echo "validate the prod code"
-  dev:
-    needs: validate
-    runs-on: ubuntu-latest
-    steps:
-      - name: test code
-        run: echo "dev are deploy"
+# jobs:
+#   validate:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: validate the code
+#         run: |
+#           echo "validate the dev code"
+#           echo "validate the qa code"
+#           echo "validate the prod code"
+#   dev:
+#     needs: validate
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: test code
+#         run: echo "dev are deploy"
 
-  qa:
-    needs: dev
-    runs-on: ubuntu-latest
-    steps:
-      - name: test code
-        run: echo "qa are deploy"
+#   qa:
+#     needs: dev
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: test code
+#         run: echo "qa are deploy"
 
-  prod:
-    needs: qa
-    runs-on: ubuntu-latest
-    steps:
-      - name: test code
-        run: echo "prod are deploy"
+#   prod:
+#     needs: qa
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: test code
+#         run: echo "prod are deploy"
