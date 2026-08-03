@@ -18,15 +18,33 @@ jobs:
       - uses: actions/checkout@v4
       - name: Run a dev environment
         run: echo 'deploying dev environment'
+        
+  validate-qa:
+    needs: dev
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: validating dev
+        run: echo 'validating the project to qa'
+
   qa:
-    needs: validate-dev
+    needs: validate-qa
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - name: Run a qa envirnment
         run: echo 'deploying qa environment'
+
+  validate-prod:
+    needs: qa
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: validating dev
+        run: echo 'validating the project to prod'
+        
   prod:
-    needs: validate-dev
+    needs: validate-prod
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
